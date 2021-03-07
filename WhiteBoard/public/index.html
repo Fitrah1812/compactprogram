@@ -60,6 +60,11 @@ label{
 	</head>
     
 	<body style="margin-top:30px;">
+  <ul id="messages"></ul>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
+  <script src="/socket.io/socket.io.js"></script>
 	<div class="container">
         <p style="">
         <button type="button" class="btn btn-warning btn-sm" value="pencil" id="pencil-button">Pencil</button>
@@ -130,18 +135,51 @@ label{
     </div>
     
 <!-- Script files -->
-        <script src='jquery.min.js'></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="jscolor/jscolor.min.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-		 <script src="canvas.js"></script> 
-
-     <script type="text/javascript">
+      <script src='jquery.min.js'></script>
+      <script src="bootstrap/js/bootstrap.min.js"></script>
+      <script src="jscolor/jscolor.min.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+		  <script src="canvas.js"></script> 
+      <script type="text/javascript">
       $(document).ready(function(){
           var board_url = window.location.href;
           $('.linkToBoard').attr("href",board_url);
       });
-    </script>
-
+      </script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+          let userName = prompt("whats your name");
+          let room = prompt("room name");
+          let ID = "";
+          var socket = io();
+          socket.emit("join room", {username : userName, roomName : room});
+          var messages = document.getElementById('messages');
+          var form = document.getElementById('form');
+          var input = document.getElementById('input');
+    
+          socket.on('send data',(data)=>{
+            ID = data.id;
+            console.log(" my ID:" + ID);
+          })
+    
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (input.value) {
+              socket.emit('chat message', {
+              value: input.value,
+              user: userName,
+              room: room,})
+              input.value = '';
+            }
+          });
+    
+          socket.on('chat message', function(msg) {
+            console.log(msg);
+            var item = document.createElement('li');
+            item.textContent = msg.msg.user +" : "+ msg.msg.value;
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+          });
+        </script>
 	</body>
 </html>
