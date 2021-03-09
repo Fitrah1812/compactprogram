@@ -1,4 +1,3 @@
-
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
@@ -55,21 +54,20 @@ function onConnection(socket){
   });
  
 }
-
 io.on('connection', onConnection);
 http.listen(port, () => console.log('listening on port ' + port));
+
+//buat roomnya
 let thisRoom = "";
 io.on('connection', (socket) => {
-    
     socket.on("join room", (data) => {
       console.log('in room');
-      let Newuser = joinUser(socket.id, data.username,data.roomName)
-      
-      socket.emit('send data' , {id : socket.id ,username:Newuser.username, roomname : Newuser.roomname });
-     
+      let Newuser = joinUser(socket.id, data.username,data.roomName, data.passwordroom)
+      socket.emit('send data' , {id : socket.id ,username:Newuser.username, roomname : Newuser.roomname, passwordroom : Newuser.passwordroom });
       thisRoom = Newuser.roomname;
       console.log(Newuser);
       socket.join(Newuser.roomname);
+
     });
     socket.on('chat message', (msg) => {
       console.log(msg);
