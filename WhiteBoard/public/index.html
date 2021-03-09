@@ -16,7 +16,9 @@
         border-radius: 5px;
       }
       body{
-        background: rgb(30, 235, 207) !important;
+        background: rgb(197, 89, 0) !important;
+        margin: 0; padding-bottom: 3rem; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       }
       #imageView { border: 1px solid #000; }
       #imageTemp { position: absolute; top: 1px; left: 1px; }
@@ -25,34 +27,34 @@
         cursor: url(../img/pen.png), crosshair;
     }
     #text_tool {
-    position: absolute;
-    border: 1px dashed black;
-    outline: 0;
-    z-index:1000 !important;
-    display: none;
-    overflow: hidden;
-    white-space: nowrap;
-}
-.container .btn.btn-sm{
-    background: rgb(53, 109, 0);
-    box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.5);
-    color: #fff;
-    outline: none;
-    cursor: pointer;
-    text-shadow: 0 1px #06f;
-    display: inline-block;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 15px;
-    margin-right: 5px;
-}
-.container .btn.btn-sm:active{
-   background: #06f; 
-}
-label{
-    color: #fff;
-}
+      position: absolute;
+      border: 1px dashed black;
+      outline: 0;
+      z-index:1000 !important;
+      display: none;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .container .btn.btn-sm{
+      background: rgb(53, 109, 0);
+      box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.5);   
+      color: #fff;
+      outline: none;
+      cursor: pointer;
+      text-shadow: 0 1px #06f;
+      display: inline-block;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 15px;
+      margin-right: 5px;
+    }
+    .container .btn.btn-sm:active{
+      background: #06f; 
+    }
+    label{
+        color: #fff;
+    }
     </style>
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -133,10 +135,63 @@ label{
           </canvas>
         </div>
     </div>
+    <br>
     <ul id="messages"></ul>
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
     </form>
+    <style>
+      #messages {
+        list-style-type: none; 
+        margin: 0; 
+        padding: 0;
+        background: #ffffff;
+        border-radius: 2rem;
+      }
+      #messages > li { 
+        padding: 0.5rem 1rem;
+        background: #ffffff;
+        margin:0; 
+        border-radius: 2rem;
+        margin:0px 250px 500px 2500px;
+      }
+      #messages > li:nth-child(odd) { 
+        background: #ffffff;
+        margin:0; 
+        border-radius: 2rem;
+      }
+      #form{
+        border: none; 
+        padding: 0 1rem; 
+        flex-grow: 1; 
+        border-radius: 2rem; 
+        margin: 0.25rem;
+        margin-bottom: 10px;
+        
+      }
+      #form > button { 
+        background: #333; 
+        border: none; 
+        padding: 0 1rem; 
+        margin: 0.25rem; 
+        border-radius: 3px; 
+        outline: none; 
+        color: #fff;
+        margin:0px 570px;
+        /* margin-bottom: 10px; */
+      }
+      #input:focus{
+        outline: none;
+      }
+      #input{
+        border: none; 
+        padding: 0 1rem; 
+        flex-grow: 1; 
+        border-radius: 2rem;
+        margin: 0.25rem;
+        margin:0px 500px
+      }
+    </style>
 <!-- Script files -->
       <script src='jquery.min.js'></script>
       <script src="bootstrap/js/bootstrap.min.js"></script>
