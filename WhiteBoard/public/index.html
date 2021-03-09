@@ -60,13 +60,13 @@ label{
 	</head>
     
 	<body style="margin-top:30px;">
-  <ul id="messages"></ul>
+  <!-- <ul id="messages"></ul>
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
-    </form>
+    </form> -->
   <script src="/socket.io/socket.io.js"></script>
 	<div class="container">
-        <p style="">
+        <!-- <p style=""> -->
         <button type="button" class="btn btn-warning btn-sm" value="pencil" id="pencil-button">Pencil</button>
         <button type="button" class="btn btn-warning btn-sm" value="rect" id="rect-button">Rectangle</button>
         <button type="button" class="btn btn-warning btn-sm" value="circle" id="circle-button">Circle</button>
@@ -133,7 +133,10 @@ label{
           </canvas>
         </div>
     </div>
-    
+    <ul id="messages"></ul>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
 <!-- Script files -->
       <script src='jquery.min.js'></script>
       <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -148,11 +151,12 @@ label{
       </script>
       <script src="/socket.io/socket.io.js"></script>
       <script>
-          let userName = prompt("whats your name");
-          let room = prompt("room name");
+          let userName = prompt("Masukkan Usernama anda");
+          let room = prompt("Masukkan Nama Ruangan yang akan dimasukki");
+          let proom = prompt("Password Ruangan");
           let ID = "";
           var socket = io();
-          socket.emit("join room", {username : userName, roomName : room});
+          socket.emit("join room", {username : userName, roomName : room, passwordroom : proom});
           var messages = document.getElementById('messages');
           var form = document.getElementById('form');
           var input = document.getElementById('input');
