@@ -125,29 +125,32 @@
         <span class="form-group" style="width: 90px;display: inline-block;">
           <label for="draw-text-font-size">Ukuran Font: </label>
           <select class="form-control" id="draw-text-font-size">
-            <option value="16">16 Px</option>
-            <option value="18">18 Px</option>
-            <option value="20">20 Px</option>
-            <option value="22">22 Px</option>
-            <option value="24" selected>24 Px</option>
-            <option value="26">26 Px</option>
-            <option value="28">28 Px</option>
-            <option value="30">30 Px</option>
-            <option value="32">32 Px</option>
-            <option value="34">34 Px</option>
-            <option value="36">36 Px</option>
-            <option value="38">38 Px</option>
-            <option value="40">40 Px</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="14">14</option>
+                <option value="14">14</option>
+                <option value="16">16</option>
+                <option value="18">18</option>
+                <option value="20">20</option>
+                <option value="22">22</option>
+                <option value="24" selected>24</option>
+                <option value="26">26</option>
+                <option value="28">28</option>
+                <option value="30">30</option>
+                <option value="32">32</option>
+                <option value="34">34</option>
+                <option value="36">36</option>
+                <option value="38">38</option>
+                <option value="40">40</option>
           </select>
         </span>
         </p>
 
         <div id="container">
             <canvas id="imageView" width="1000" height="500">
-            <p>Unfortunately, your browser is currently unsupported by our web
-            application.  We are sorry for the inconvenience. Please use one of the
-            supported browsers listed below, or draw the image you want using an
-            offline tool.</p>
+            <p>Mohon maaf Browsermu tidak mendukung brow, coba referensi lain yak !!!!</p>
             <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a
               href="http://www.mozilla.com">Firefox</a>, <a
               href="http://www.apple.com/safari">Safari</a>, and <a
@@ -238,8 +241,7 @@
         var socket = io();
         socket.emit("join room", {
             username: userName,
-            roomName: room,
-            passwordroom: proom
+            roomName: room
         });
         var messages = document.getElementById('messages');
         var form = document.getElementById('form');
