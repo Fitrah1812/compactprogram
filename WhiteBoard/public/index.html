@@ -1,87 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>White Board</title>
-        <meta charset="utf-8">
+
+<head>
+    <meta charset="utf-8">
+    <title>White Board</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A Collabrative White board">
     <meta name="author" content="Fitrah">
-		  <style type="text/css">
-      #container { position: relative; }
-      #container{
-        width: 1000px;
-        height: 500px;
-        background-color: #fff;
-        border-radius: 5px;
-      }
-      body{
-        background: rgb(197, 89, 0) !important;
-        margin: 0; padding-bottom: 3rem; 
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      }
-      #imageView { border: 1px solid #000; }
-      #imageTemp { position: absolute; top: 1px; left: 1px; }
-      canvas {
-        border-radius: 5px;
-        cursor: url(../img/pen.png), crosshair;
-    }
-    #text_tool {
-      position: absolute;
-      border: 1px dashed black;
-      outline: 0;
-      z-index:1000 !important;
-      display: none;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .container .btn.btn-sm{
-      background: rgb(53, 109, 0);
-      box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.5);   
-      color: #fff;
-      outline: none;
-      cursor: pointer;
-      text-shadow: 0 1px #06f;
-      display: inline-block;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      padding: 5px 15px;
-      margin-right: 5px;
-    }
-    .container .btn.btn-sm:active{
-      background: #06f; 
-    }
-    label{
-        color: #fff;
-    }
+    <style type="text/css">
+        #container {
+            position: relative;
+        }
+        
+        #container {
+            width: 1000px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        
+        body {
+            background: rgb(197, 89, 0) !important;
+            margin: 0;
+            padding-bottom: 3rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        #imageView {
+            border: 1px solid #000;
+        }
+        
+        #imageTemp {
+            position: absolute;
+            top: 1px;
+            left: 1px;
+        }
+        
+        canvas {
+            border-radius: 5px;
+            cursor: url(../img/pen.png), crosshair;
+        }
+        
+        #text_tool {
+            position: absolute;
+            border: 1px dashed black;
+            outline: 0;
+            z-index: 1000 !important;
+            display: none;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .container .btn.btn-sm {
+            background: rgb(53, 109, 0);
+            box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.5);
+            color: #fff;
+            outline: none;
+            cursor: pointer;
+            text-shadow: 0 1px #06f;
+            display: inline-block;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 15px;
+            margin-right: 5px;
+        }
+        
+        .container .btn.btn-sm:active {
+            background: #06f;
+        }
+        
+        label {
+            color: #fff;
+        }
     </style>
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    
-	</head>
-    
-	<body style="margin-top:30px;">
-  <!-- <ul id="messages"></ul>
+
+</head>
+
+<body style="margin-top:30px;">
+    <!-- <ul id="messages"></ul>
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
     </form> -->
-  <script src="/socket.io/socket.io.js"></script>
-	<div class="container">
+    <script src="/socket.io/socket.io.js"></script>
+    <div class="container">
         <!-- <p style=""> -->
-        <button type="button" class="btn btn-warning btn-sm" value="pencil" id="pencil-button">Pencil</button>
-        <button type="button" class="btn btn-warning btn-sm" value="rect" id="rect-button">Rectangle</button>
-        <button type="button" class="btn btn-warning btn-sm" value="circle" id="circle-button">Circle</button>
-        <button type="button" class="btn btn-warning btn-sm" value="ellipse" id="ellipse-button">Ellipse</button>
-        <button type="button" class="btn btn-warning btn-sm" value="line" id="line-button">Line</button>
-        <button type="button" class="btn btn-warning btn-sm" value="text" id="text-button">Text</button>
-        <button type="button" class="btn btn-warning btn-sm" id="clear-all">Clear All</button>
-        <label for="colour" style="position:absolute;">Colour : </label>
+        <button type="button" class="btn btn-warning btn-sm" value="pencil" id="pencil-button">Pensil</button>
+        <button type="button" class="btn btn-warning btn-sm" value="rect" id="rect-button">Persegi</button>
+        <button type="button" class="btn btn-warning btn-sm" value="circle" id="circle-button">Lingkaran</button>
+        <button type="button" class="btn btn-warning btn-sm" value="ellipse" id="ellipse-button">Elips</button>
+        <button type="button" class="btn btn-warning btn-sm" value="line" id="line-button">Garis</button>
+        <button type="button" class="btn btn-warning btn-sm" value="text" id="text-button">Teks</button>
+        <button type="button" class="btn btn-warning btn-sm" id="clear-all">Hapus</button>
+        <label for="colour" style="position:absolute;">Warna : </label>
         <input id="colour-picker" value="#000000" style="width:80px;" class="jscolor {width:243, height:150, position:'right',
     borderColor:'#FFF', insetColor:'#FFF', backgroundColor:'#666'}">
         <span class="form-group" style="width: 90px;display: inline-block;">
           <label for="line-Width">Thickness: </label>
           <select class="form-control" id="line-Width">
+            <option selected>1</option>
             <option>2</option>
             <option>4</option>
             <option>6</option>
@@ -91,29 +111,29 @@
             <option>14</option>
           </select>
         </span>
-         <span class="form-group" style="width: 130px;display: inline-block;">
+        <span class="form-group" style="width: 130px;display: inline-block;">
           <label for="draw-text-font-family">Font: </label>
           <select class="form-control" id="draw-text-font-family">
             <option value="Arial">Arial</option>
-            <option value="Verdana" selected>Verdana</option>
-            <option value="Times New Roman">Times New Roman</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Times New Roman" selected>Times New Roman</option>
             <option value="Courier New">Courier New</option>
             <option value="serif">serif</option>
             <option value="sans-serif">sans-serif</option>
           </select>
         </span>
         <span class="form-group" style="width: 90px;display: inline-block;">
-          <label for="draw-text-font-size">Font Size: </label>
+          <label for="draw-text-font-size">Ukuran Font: </label>
           <select class="form-control" id="draw-text-font-size">
             <option value="16">16 Px</option>
             <option value="18">18 Px</option>
             <option value="20">20 Px</option>
             <option value="22">22 Px</option>
-            <option value="24">24 Px</option>
+            <option value="24" selected>24 Px</option>
             <option value="26">26 Px</option>
             <option value="28">28 Px</option>
             <option value="30">30 Px</option>
-            <option value="32" selected>32 Px</option>
+            <option value="32">32 Px</option>
             <option value="34">34 Px</option>
             <option value="36">36 Px</option>
             <option value="38">38 Px</option>
@@ -123,7 +143,7 @@
         </p>
 
         <div id="container">
-          <canvas id="imageView" width="1000" height="500">
+            <canvas id="imageView" width="1000" height="500">
             <p>Unfortunately, your browser is currently unsupported by our web
             application.  We are sorry for the inconvenience. Please use one of the
             supported browsers listed below, or draw the image you want using an
@@ -138,107 +158,118 @@
     <br>
     <ul id="messages"></ul>
     <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
+        <input id="input" autocomplete="off" /><button>Send</button>
     </form>
     <style>
-      #messages {
-        list-style-type: none; 
-        margin: 0; 
-        padding: 0;
-        background: #ffffff;
-        border-radius: 2rem;
-      }
-      #messages > li { 
-        padding: 0.5rem 1rem;
-        background: #ffffff;
-        margin:0; 
-        border-radius: 2rem;
-        margin:0px 250px 500px 2500px;
-      }
-      #messages > li:nth-child(odd) { 
-        background: #ffffff;
-        margin:0; 
-        border-radius: 2rem;
-      }
-      #form{
-        border: none; 
-        padding: 0 1rem; 
-        flex-grow: 1; 
-        border-radius: 2rem; 
-        margin: 0.25rem;
-        margin-bottom: 10px;
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            border-radius: 2rem;
+        }
         
-      }
-      #form > button { 
-        background: #333; 
-        border: none; 
-        padding: 0 1rem; 
-        margin: 0.25rem; 
-        border-radius: 3px; 
-        outline: none; 
-        color: #fff;
-        margin:0px 570px;
-        /* margin-bottom: 10px; */
-      }
-      #input:focus{
-        outline: none;
-      }
-      #input{
-        border: none; 
-        padding: 0 1rem; 
-        flex-grow: 1; 
-        border-radius: 2rem;
-        margin: 0.25rem;
-        margin:0px 500px
-      }
+        #messages>li {
+            padding: 0.5rem 1rem;
+            background: #ffffff;
+            margin: 0;
+            border-radius: 2rem;
+            margin: 0px 250px 500px 2500px;
+        }
+        
+        #messages>li:nth-child(odd) {
+            background: #ffffff;
+            margin: 0;
+            border-radius: 2rem;
+        }
+        
+        #form {
+            border: none;
+            padding: 0 1rem;
+            flex-grow: 1;
+            border-radius: 2rem;
+            margin: 0.25rem;
+            margin-bottom: 10px;
+        }
+        
+        #form>button {
+            background: #333;
+            border: none;
+            padding: 0 1rem;
+            margin: 0.25rem;
+            border-radius: 3px;
+            outline: none;
+            color: #fff;
+            margin: 0px 570px;
+            /* margin-bottom: 10px; */
+        }
+        
+        #input:focus {
+            outline: none;
+        }
+        
+        #input {
+            border: none;
+            padding: 0 1rem;
+            flex-grow: 1;
+            border-radius: 2rem;
+            margin: 0.25rem;
+            margin: 0px 500px
+        }
     </style>
-<!-- Script files -->
-      <script src='jquery.min.js'></script>
-      <script src="bootstrap/js/bootstrap.min.js"></script>
-      <script src="jscolor/jscolor.min.js"></script>
-      <script src="/socket.io/socket.io.js"></script>
-		  <script src="canvas.js"></script> 
-      <script type="text/javascript">
-      $(document).ready(function(){
-          var board_url = window.location.href;
-          $('.linkToBoard').attr("href",board_url);
-      });
-      </script>
-      <script src="/socket.io/socket.io.js"></script>
-      <script>
-          let userName = prompt("Masukkan Usernama anda");
-          let room = prompt("Masukkan Nama Ruangan yang akan dimasukki");
-          let proom = prompt("Password Ruangan");
-          let ID = "";
-          var socket = io();
-          socket.emit("join room", {username : userName, roomName : room, passwordroom : proom});
-          var messages = document.getElementById('messages');
-          var form = document.getElementById('form');
-          var input = document.getElementById('input');
-    
-          socket.on('send data',(data)=>{
+    <!-- Script files -->
+    <script src='jquery.min.js'></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="jscolor/jscolor.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="canvas.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var board_url = window.location.href;
+            $('.linkToBoard').attr("href", board_url);
+        });
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let userName = prompt("Masukkan Usernama anda");
+        let room = prompt("Masukkan Nama Ruangan yang akan dimasukki");
+        let proom = prompt("Password Ruangan");
+        let ID = "";
+        var socket = io();
+        socket.emit("join room", {
+            username: userName,
+            roomName: room,
+            passwordroom: proom
+        });
+        var messages = document.getElementById('messages');
+        var form = document.getElementById('form');
+        var input = document.getElementById('input');
+
+        socket.on('send data', (data) => {
             ID = data.id;
             console.log(" my ID:" + ID);
-          })
-    
-          form.addEventListener('submit', function(e) {
+        })
+
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             if (input.value) {
-              socket.emit('chat message', {
-              value: input.value,
-              user: userName,
-              room: room,})
-              input.value = '';
+                socket.emit('chat message', {
+                    value: input.value,
+                    user: userName,
+                    room: room,
+                })
+                input.value = '';
             }
-          });
-    
-          socket.on('chat message', function(msg) {
+        });
+
+        socket.on('chat message', function(msg) {
             console.log(msg);
             var item = document.createElement('li');
-            item.textContent = msg.msg.user +" : "+ msg.msg.value;
+            item.textContent = msg.msg.user + " : " + msg.msg.value;
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
-          });
-        </script>
-	</body>
+        });
+    </script>
+</body>
+
 </html>
