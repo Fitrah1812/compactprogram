@@ -174,7 +174,7 @@
             background: #ffffff;
             margin: 0;
             border-radius: 2rem;
-            margin: 0px 250px 500px 2500px;
+            /* margin: 0px 250px 500px 2500px; */
         }
         
         #messages>li:nth-child(odd) {
@@ -232,8 +232,8 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         let userName = prompt("Masukkan Usernama anda");
-        let room = prompt("Masukkan Nama Ruangan yang akan dimasukki");
-        let proom = prompt("Password Ruangan");
+        let proom = prompt("Nama Ruangan");
+        let room = prompt("Password Ruangan");
         let ID = "";
         var socket = io();
         socket.emit("join room", {
@@ -246,10 +246,10 @@
         var input = document.getElementById('input');
 
         socket.on('send data', (data) => {
-            ID = data.id;
-            console.log(" my ID:" + ID);
-        })
-
+                ID = data.id;
+                console.log(" my ID:" + ID);
+            })
+            // Message
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             if (input.value) {
