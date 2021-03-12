@@ -235,23 +235,25 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         let userName = prompt("Masukkan Usernama anda");
-        let proom = prompt("Nama Ruangan");
-        let room = prompt("Password Ruangan");
+        let proom = prompt("Masukkan Nama Ruangan");
+        let room = prompt("Masukkan Password Ruangan");
+        // let proom = prompt("Nama Ruangan");
         let ID = "";
         var socket = io();
         socket.emit("join room", {
             username: userName,
-            roomName: room
+            roomName: room,
+            passwordroom: proom
         });
         var messages = document.getElementById('messages');
         var form = document.getElementById('form');
         var input = document.getElementById('input');
 
         socket.on('send data', (data) => {
-                ID = data.id;
-                console.log(" my ID:" + ID);
-            })
-            // Message
+            ID = data.id;
+            console.log(" my ID:" + ID);
+        })
+
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             if (input.value) {
@@ -272,6 +274,7 @@
             window.scrollTo(0, document.body.scrollHeight);
         });
     </script>
+
 </body>
 
 </html>
