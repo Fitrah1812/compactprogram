@@ -12,4 +12,12 @@ Tata Cara Penggunaannya
 
 Jika ada user lain yang masuk dengan nama ruangan dan password yang sama maka akan dibuat ruangan private collaborative.
 
+Fitur-fitur yang ada di web based ini adalah sebagai berikut
+1. Fitur Menulis Text
+2. Fitur Membuat Line
+3. Fitur Membuat Persegi
+4. fitur Mmebuat Elipas, 
+5. Fitur Menggunakan pensil diatur dengan ketebalan
+
+Fitur-fitur diatas didapat dari sumber google untuk meningkatkan kemampuan web based.
 
